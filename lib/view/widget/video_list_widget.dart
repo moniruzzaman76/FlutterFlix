@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import '../../data/model/video_player_model.dart';
 
 class VideoListWidget extends StatelessWidget {
   const VideoListWidget({
-    super.key,
+    super.key, required this.data,
   });
+
+  final Results data;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +29,10 @@ class VideoListWidget extends StatelessWidget {
             alignment: Alignment.bottomRight,
             height:192,
             width: double.infinity,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image:AssetImage("assets/images/thumbnail.jpg")
+                    image:NetworkImage(data.thumbnail ?? "")
                 )
             ),
             child: Container(
@@ -39,7 +44,7 @@ class VideoListWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                   color: Colors.black,
                 ),
-                child: Text("3:40",style: GoogleFonts.inter(
+                child: Text(data.duration ?? "0:00",style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
@@ -50,13 +55,13 @@ class VideoListWidget extends StatelessWidget {
           ListTile(
             leading: InkWell(
               onTap: (){},
-              child: const CircleAvatar(
-                backgroundImage: AssetImage("assets/images/thumbnail.jpg"),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(data.channelImage ?? "assets/images/thumbnail.jpg"),
                 radius: 22,
               ),
             ),
             title:Text(
-              "আরব নেতাদের যে ভুলে ফি*লি*স্তি*নের এই দুর্দাশা | আবু ত্বহা মুহাম্মদ আদনান",
+             data.title ?? "Unknown Name",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.hindSiliguri(
@@ -69,13 +74,14 @@ class VideoListWidget extends StatelessWidget {
             subtitle: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("53,332 views",style: GoogleFonts.inter(
+                Text(
+                  "${data.viewers} Views",style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey[400]
                 ),),
                 const SizedBox(width: 30,),
-                Text("Feb 21,2021",style: GoogleFonts.inter(
+                Text(formatDate(data.dateAndTime ?? ""),style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey[400]
@@ -87,4 +93,10 @@ class VideoListWidget extends StatelessWidget {
       ),
     );
   }
+  String formatDate(String dateTimeString) {
+    final dateTime = DateTime.parse(dateTimeString);
+    final formattedDate = DateFormat.MMMd().add_y().format(dateTime);
+    return formattedDate;
+  }
+
 }
