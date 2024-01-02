@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../../data/model/video_player_model.dart';
+import '../utils/image_url.dart';
 
 class VideoListWidget extends StatelessWidget {
   const VideoListWidget({
@@ -18,13 +19,6 @@ class VideoListWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16,),
-          Text("Trending Videos",style: GoogleFonts.inter(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: const Color(0xFF1A202C),
-          ),),
-          const SizedBox(height: 16,),
           Container(
             alignment: Alignment.bottomRight,
             height:192,
@@ -55,9 +49,16 @@ class VideoListWidget extends StatelessWidget {
           ListTile(
             leading: InkWell(
               onTap: (){},
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(data.channelImage ?? "assets/images/thumbnail.jpg"),
-                radius: 22,
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(ImagePath.channelImage,)
+                    )
+                ),
               ),
             ),
             title:Text(
@@ -78,13 +79,13 @@ class VideoListWidget extends StatelessWidget {
                   "${data.viewers} Views",style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
-                    color: Colors.grey[400]
+                    color: Colors.grey[500]
                 ),),
                 const SizedBox(width: 30,),
                 Text(formatDate(data.dateAndTime ?? ""),style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
-                    color: Colors.grey[400]
+                    color: Colors.grey[500]
                 ),)
               ],
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterflix/State_holders/video_playList_controller.dart';
 import 'package:flutterflix/view/screen/video_player_screen.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../widget/video_list_widget.dart';
 
@@ -26,6 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title:  Text("Trending Videos",style: GoogleFonts.inter(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: const Color(0xFF1A202C),
+        ),),
+      ),
       body: GetBuilder<VideoPlayListController>(
         builder: (videoPlayListController) {
           return Visibility(
@@ -37,7 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context,index){
               return  InkWell(
               onTap: (){
-                Get.to(()=>const VideoPlayerScreen());
+                Get.to(()=> VideoPlayerScreen(
+                  videoUrl: videoPlayListController.videoPlayListModel.results![index].manifest!,
+                  videoData: videoPlayListController.videoPlayListModel.results![index],
+                ));
               },
                   child:  VideoListWidget(data: videoPlayListController.videoPlayListModel.results![index],),
 
