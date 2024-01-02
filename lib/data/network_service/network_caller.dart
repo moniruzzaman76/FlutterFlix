@@ -3,12 +3,9 @@ import 'dart:developer';
 import 'package:http/http.dart';
 import 'network_response.dart';
 
-
-
 class NetWorkCaller{
 
   Future<NetworkResponse>getRequest(String url)async{
-
     try {
       Response response = await get(Uri.parse(url));
       //final Map<String,dynamic> decodeResponse = jsonDecode(response.body);
@@ -25,5 +22,5 @@ class NetWorkCaller{
     }
     return NetworkResponse(false,-1, null);
   }
-
 }
+
