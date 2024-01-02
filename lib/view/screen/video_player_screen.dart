@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflix/data/model/video_player_model.dart';
 import 'package:flutterflix/view/utils/icon_url.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
-import '../utils/image_url.dart';
+import '../widget/below_video_buttons.dart';
+import '../widget/channel_detail_and_subscribe.dart';
 import '../widget/user_comment_tile.dart';
-import '../widget/container_box.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   const VideoPlayerScreen({Key? key, required this.videoData, }) : super(key: key);
@@ -69,8 +68,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         ),
                       );
                     } else {
-                      return const Center(
-                        child: CircularProgressIndicator(color: Colors.blue,),
+                      return const SizedBox(
+                        height: 200,
+                        child: Center(
+                          child: CircularProgressIndicator(color: Colors.blue,),
+                        ),
                       );
                     }
                   },
@@ -80,18 +82,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   left: 5,
                   child: BackButton(color: Colors.white,),
                 ),
-                // Positioned(
-                //  bottom: 0,
-                //   right: 5,
-                //   child: IconButton(
-                //     onPressed: _togglePlaying,
-                //     iconSize: 64,
-                //     icon: Icon(
-                //       _isPlaying ? Icons.pause : Icons.play_arrow,
-                //       color: Colors.grey,size: 20,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
             Padding(
@@ -128,93 +118,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     ],
                   ),
                   const SizedBox(height: 16,),
-                    const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Expanded(
-                        flex: 5,
-                        child: ContainerBox(
-                          icon: Icons.favorite_border,
-                          text: "Mash Allah (12k)",
-                        ),
-                      ),
-                      SizedBox(width: 4,),
-                      Expanded(
-                        flex: 3,
-                        child:  ContainerBox(
-                          icon: CupertinoIcons.hand_thumbsup,
-                          text: "Like (12k)",
-                        ),
-                      ),
-                      SizedBox(width: 4,),
-                      Expanded(
-                        flex: 3,
-                        child: ContainerBox(
-                          icon: Icons.share,
-                          text: "Share",
-                        ),
-                      ),
-                      SizedBox(width: 4,),
-                      Expanded(
-                        flex: 3,
-                        child: ContainerBox(
-                          icon: Icons.flag_outlined,
-                          text: "Report",
-                        ),
-                      ),
-                    ],
-                  ),
+                    const BelowVideoButtons(),
                   const SizedBox(height: 16,),
-                  ListTile(
-                    leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(ImagePath.channelImage,)
-                          )
-                      ),
-                    ),
-                    title:  Text("Mega Bangla Tv",style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[900]
-                    ),),
-                    subtitle:Text("3M Subscribers",style: GoogleFonts.poppins(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey[600]
-                    ),),
-                    trailing: Container(
-                      height: 34,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            alignment: Alignment.centerLeft
-                        ),
-                        onPressed: (){},
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(Icons.add,color: Colors.white,size: 15,),
-                            const Spacer(),
-                            Text("Subscribe",style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  const ChannelDetailsAndSubscribe(),
                   Divider(thickness: 1 ,color: Colors.grey[300],),
                   Row(
                     children: [
@@ -260,5 +166,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     );
   }
 }
+
+
+
+
 
 
