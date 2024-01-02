@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterflix/view/utils/image_url.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CommentTileModelSheet extends StatelessWidget {
-  const CommentTileModelSheet({
+class UserCommentTile extends StatelessWidget {
+  const UserCommentTile({
     super.key,
   });
 

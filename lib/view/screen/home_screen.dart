@@ -46,7 +46,6 @@ class _HomeScreenState extends State<HomeScreen> {
               return  InkWell(
               onTap: (){
                 Get.to(()=> VideoPlayerScreen(
-                  videoUrl: videoPlayListController.videoPlayListModel.results![index].manifest!,
                   videoData: videoPlayListController.videoPlayListModel.results![index],
                 ));
               },
