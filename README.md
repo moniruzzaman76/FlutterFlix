@@ -2,8 +2,8 @@
 # Flutterflix ( Video Player App)
 Video Player App using Flutter,Api and State Management.
 
-## APk file for App
-
+## APK file for App
+[Download APK](https://github.com/moniruzzaman76/FlutterFlix/releases/download/v1.0/FlutterFlix.apk)
 
 
 ## Description
@@ -33,7 +33,8 @@ During the development of FlutterFlix, several challenges were encountered, incl
 
 ## FlutterFlix UI Design
 
-
+<img src="https://github.com/moniruzzaman76/FlutterFlix/assets/107347380/9918823f-cacf-429e-ad5f-9991aa651cee" width="200" />
+<img src="https://github.com/moniruzzaman76/FlutterFlix/assets/107347380/bac3a786-b230-4f14-a451-2f4fce2c0195" width="200" />
 
 ### Installation
 
